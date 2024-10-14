@@ -9,7 +9,6 @@ import {
   usePostTODOMutation,
 } from "@/redux/api/crud";
 import Image from "next/image";
-import { isPlainObject } from "@reduxjs/toolkit";
 import { useState } from "react";
 
 const TodoList = () => {
@@ -62,7 +61,9 @@ const TodoList = () => {
   };
 
   return (
-    <div>
+    <div className={scss.Todo}>
+      <div className="container">
+        <div className={scss.content}>
       <div className={scss.AddData}>
         <form onSubmit={handleSubmit(onSubmit)}>
           <input type="file" {...register("files", { required: true })} />
@@ -76,7 +77,7 @@ const TodoList = () => {
       </div>
       <div>
         {data?.map((el) => (
-          <div>
+          <div className={scss.block}>
             {editId === el._id ? (
               <form onSubmit={edtiHandleSubmit(editHandleSubmit)}>
                 <input
@@ -91,8 +92,8 @@ const TodoList = () => {
               </form>
             ) : (
               <div key={el._id}>
-                <p>{el.title}</p>
                 <Image src={el.files} alt="" width={200} height={200} />
+                <p>{el.title}</p>
                 <button onClick={() => deleteData(el._id)}>delete</button>
                 <button
                   onClick={() => {
@@ -107,6 +108,8 @@ const TodoList = () => {
             )}
           </div>
         ))}
+      </div>
+      </div>
       </div>
     </div>
   );
