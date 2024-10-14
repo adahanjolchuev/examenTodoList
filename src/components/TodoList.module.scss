@@ -2,7 +2,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #f5f5f5;
   padding: 50px;
   .container {
     width: 100%;
@@ -21,12 +20,23 @@
       display: flex;
       align-items: center;
 
-      input[type="file"],
+      input[type="file"] {
+        border-radius: 0 5px 5px 0;
+        padding: 10px 15px;
+        border: 2px solid #ddd;
+        border-radius: 5px;
+        font-size: 11px;
+        margin: 10px;
+        background-color: #fff;
+        margin-right: -1px;
+        transition: border-color 0.3s ease;
+      }
       input[type="text"] {
         padding: 10px 15px;
         border: 2px solid #ddd;
         border-radius: 5px 0 0 5px;
         font-size: 14px;
+        margin: 10px;
         background-color: #fff;
         margin-right: -1px;
         transition: border-color 0.3s ease;
@@ -62,6 +72,7 @@
         background-color: #007bff;
         border-radius: 10px;
         padding: 20px;
+        margin: 20px;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         text-align: center;
         transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -83,6 +94,7 @@
           font-size: 16px;
           font-weight: 600;
           margin: 15px 0;
+          font-family: sans-serif;
         }
 
         button {
