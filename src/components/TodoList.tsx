@@ -54,7 +54,7 @@ const TodoList = () => {
       title: data.title,
       files: response.url,
     };
-    
+
     await editData({ _id: editId!, data: newData });
     setEditId(null);
     editReset();
@@ -64,52 +64,54 @@ const TodoList = () => {
     <div className={scss.Todo}>
       <div className="container">
         <div className={scss.content}>
-      <div className={scss.AddData}>
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <input type="file" {...register("files", { required: true })} />
-          <input
-            type="text"
-            placeholder="title"
-            {...register("title", { required: true })}
-          />
-          <button type="submit">Add</button>
-        </form>
-      </div>
-      <div>
-        {data?.map((el) => (
-          <div className={scss.block}>
-            {editId === el._id ? (
-              <form onSubmit={edtiHandleSubmit(editHandleSubmit)}>
-                <input
-                  type="text"
-                  {...registerEdit("title", { required: true })}
-                />
-                <input
-                  type="file"
-                  {...registerEdit("files", { required: true })}
-                />
-                <button type="submit">save</button>
-              </form>
-            ) : (
-              <div key={el._id}>
-                <Image src={el.files} alt="" width={200} height={200} />
-                <p>{el.title}</p>
-                <button onClick={() => deleteData(el._id)}>delete</button>
-                <button
-                  onClick={() => {
-                    setEditId(el._id);
-                    setValue("files", el.files);
-                    setValue("title", el.title);
-                  }}
-                >
-                  Edit
-                </button>
-              </div>
-            )}
+          <div className={scss.AddData}>
+            <form onSubmit={handleSubmit(onSubmit)}>
+              <input type="file" {...register("files", { required: true })} />
+              <input
+                type="text"
+                placeholder="title"
+                {...register("title", { required: true })}
+              />
+              <button type="submit">Add</button>
+            </form>
           </div>
-        ))}
-      </div>
-      </div>
+          {data?.map((el) => (
+            <div>
+              {editId === el._id ? (
+                <form onSubmit={edtiHandleSubmit(editHandleSubmit)}>
+                  <input
+                    type="text"
+                    {...registerEdit("title", { required: true })}
+                  />
+                  <input
+                    type="file"
+                    {...registerEdit("files", { required: true })}
+                  />
+                  <button type="submit">save</button>
+                </form>
+              ) : (
+                <div className={scss.Blocks}>
+                  <div key={el._id} className={scss.block}>
+                    <Image src={el.files} alt="" width={200} height={200} />
+                    <p>{el.title}</p>
+                   <div>
+                   <button onClick={() => deleteData(el._id)}>delete</button>
+                    <button
+                      onClick={() => {
+                        setEditId(el._id);
+                        setValue("files", el.files);
+                        setValue("title", el.title);
+                      }}
+                    >
+                      Edit
+                    </button>
+                   </div>
+                  </div>
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
